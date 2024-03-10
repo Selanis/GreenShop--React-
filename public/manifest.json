@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GreenShop",
+  "name": "GreenShop",
   "icons": [
     {
       "src": "favicon.svg",
@@ -13,9 +13,9 @@
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "logo-main.svg",
+      "type": "image/svg",
+      "sizes": "150x35"
     }
   ],
   "start_url": ".",

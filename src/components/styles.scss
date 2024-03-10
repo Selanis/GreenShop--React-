@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Cera Pro";
+    src: url('fonts/CeraPro-Thin.ttf');
+}
+
+@font-face {
+    font-family: "Cera Pro";
+    src: url('fonts/CeraPro-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Cera Pro";
+    src: url('fonts/CeraPro-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Cera Pro";
+    src: url('fonts/CeraPro-Light.ttf');
+}
+
+@font-face {
+    font-family: "Cera Pro";
+    src: url('fonts/CeraPro-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Cera Pro";
+    src: url('fonts/CeraPro-Black.ttf');
+}
+
+$green: #46A358;
+$black: #3D3D3D;
+$grey: #727272;
+
+* {
+    margin: 0;
+    font-family: 'Cera Pro' sans-serif;
+    color: $black;
+
+    ul {
+        list-style: none;
+
+        li {
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            
+
+            &:hover {
+                font-weight: 600;
+            }
+        }
+    }
+    
+
+    button {
+        cursor: pointer;
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 70px;
+        line-height: 70px;
+    }
+
+    h2 {
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        font-size: 14px;
+    }
+
+    h3 {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    h4 {
+        font-size: 14px;
+        color: $grey;
+    }
+
+    span {
+        color: $green !important;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
