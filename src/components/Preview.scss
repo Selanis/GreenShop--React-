@@ -1,5 +1,62 @@
 @import 'styles.scss';
 
-.preview {
+.busket {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
     
+
+    
+
+    .busketList {
+        max-width: 750px;
+        width: 100%;
+        margin-top: 50px;
+        padding-top: 30px;
+        padding-bottom: 60px;
+        padding-left: 60px;
+        padding-right: 60px;
+        border: 2px solid $green;
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $green
+        }
+
+        &__item {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+
+            p {
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            .busketButtons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 150px;
+                button {
+                    background-color: $green;
+                    color: white;
+                    border: none;
+                    width: 100%;
+                    max-width: 50px;
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                    font-weight: 600;
+                }
+
+                
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@ function Good(props) {
                 <p>{name}</p>
                 <h3>{price}₽</h3>
                 <BuyGood className="text__button" item={id}/>
-                {/* <button className="text__button" >Купить</button> */}
+
             </div>
         </div>
     )
