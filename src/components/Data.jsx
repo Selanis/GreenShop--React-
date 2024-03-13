@@ -1,85 +1,45 @@
 import './styles.scss';
 import './Data.scss';
-import React, { Component } from 'react';
-import $ from 'jquery';
+import React from 'react';
+// import $ from 'jquery';
+import {useState, useEffect} from 'react';
+import { API_KEY, API_URL } from './config.jsx'
+import { Preloader } from './Preloader.jsx'
+import { Good } from './Good.jsx'
 
-class Data extends Component {
-    state = {
-        apiKey: '46086b20-ac10a08c-d2bdd200-b171b52e'
-    }
+function Data() {
+    const [goods, setGoods] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    handleClickBuy = (data) => {
-        localStorage.setItem(data.mainId, 1)
-    }
+    useEffect(function getGoods() {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", API_KEY);
 
-    componentDidMount = async () => {
-        $.ajax({
-            url: `https://fortniteapi.io/v2/shop?lang=ru`,
+        const requestOptions = {
             method: 'GET',
-            headers: {
-                accept: 'application/json', 
-                Authorization: '46086b20-ac10a08c-d2bdd200-b171b52e'
-                
-            },
-            
-            beforeSend: function(xhr){
-                let newContent = ``
-                newContent += `
-                    <div class="preloader">
-                            <img class="preloader__logo" id="preloader" src="preloader.svg" width="50px" height="50px" />
-                    </div>
-                `
-                $('.data').html(newContent)
-            },
-            success: function (data) {
-                console.log(data)
-                let newContent = ``
-                for (let i = 50; i < 80; i++) {
-                    if (localStorage.getItem(data.shop[i].mainId) == null) {
-                        newContent += `
-                            <div class='data__item'>
-                                <div class="image" style="background: url('${data.shop[i].granted[0].images.background}') center/cover no-repeat;"></div>
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-                                <div class="text">
-                                    <p>${data.shop[i].displayName}</p>
-                                    <h3>${data.shop[i].price.finalPrice}₽</h3>
-                                    <button class="text__button" >Купить</button>
-                                </div>
-                            </div>
-                        `
-                    } else {
-                        newContent += `
-                            <div class='data__item'>
-                                <div class="image" style="background: url('${data.shop[i].granted[0].images.background}') center/cover no-repeat;"></div>
-
-                                <div class="text">
-                                    <p>${data.shop[i].displayName}</p>
-                                    <h3>${data.shop[i].price.finalPrice}₽</h3>
-                                    <div class="text__buttons">
-                                        <button>-</button>
-                                        <h3>${localStorage.getItem(data.shop[i].mainId != null)}</h3>
-                                        <button>+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    }
-                }
-
-                $('.data').html(newContent)
-            }
+        fetch(API_URL, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            data.shop && setGoods(data.shop)
+            setLoading(false)
         })
-    }
+        .catch(error => console.log('error', error));
+        
+    }, []);
 
-    render() {
-        return (
-            <section>
-                <div className="data" style={{minHeight: 'calc(100vh - 120px - 78px - 18px)'}}>
-
-                </div>
-            </section>
-        )
-    }
+    return (
+        <section>
+            <div className="data" style={{minHeight: 'calc(100vh - 120px - 78px - 18px)'}}>
+                {loading ? <Preloader /> : goods.slice(40, 60).map((item) => (
+                    <Good object={item} {...item}/>
+                )) }
+            </div>
+        </section>
+    )
 }
 
-export default Data
+export { Data }

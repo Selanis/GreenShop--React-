@@ -13,7 +13,7 @@ class Header extends Component {
                     <ul>
                         <li>Домой</li>
                         <li>Каталог</li>
-                        <li>Забота о растениях</li>
+                        <li>Забота о скинах</li>
                         <li>Новости</li>
                     </ul>
 
