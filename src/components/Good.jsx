@@ -1,13 +1,18 @@
 import React from "react";
 import './Data.scss';
 import './styles.scss';
-import { BuyGood } from './BuyGood.jsx'
+import { useState } from 'react'
+import $ from 'jquery';
 
 function Good(props) {
-    const background = props.granted[0].images.background;
-    const price = props.price.finalPrice;
-    const id = props.mainId;
-    const name = props.displayName;
+    const background = props.item.granted[0].images.background;
+    const name = props.item.displayName;
+    const price = props.item.price.finalPrice;
+    const count = props.count
+    const id = props.item.mainId
+
+    const editGood = props.editGood
+    const AddGood = props.AddGood
 
     return (
         <div className='data__item' id={id}>
@@ -18,7 +23,15 @@ function Good(props) {
             <div className="text">
                 <p>{name}</p>
                 <h3>{price}₽</h3>
-                <BuyGood className="text__button" item={id}/>
+
+                {
+                    count == 0 ? <button className="text__button" onClick={ AddGood }>Купить</button> : 
+                    <div className="text__countButtons">
+                        <button >-</button>
+                            <p>{count}</p>
+                        <button>+</button>
+                    </div>
+                }
 
             </div>
         </div>

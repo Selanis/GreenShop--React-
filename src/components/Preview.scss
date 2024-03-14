@@ -7,7 +7,25 @@
     align-items: center;
     
 
-    
+    .price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid $green;
+
+        h2 {
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
 
     .busketList {
         max-width: 750px;
@@ -19,11 +37,24 @@
         padding-right: 60px;
         border: 2px solid $green;
 
+        .closeButton {
+            border: none;
+            background: none;
+            float: right;
+
+            img {
+                width: 25px;
+                height: 25px;
+                
+            }
+        }
+
         h1 {
             font-size: 40px;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid $green
+            border-bottom: 1px solid $green;
+            padding-left: 25px;
         }
 
         &__item {
@@ -31,10 +62,27 @@
             flex-direction: row;
             width: 100%;
             justify-content: space-between;
+            margin-top: 10px;
+            
 
-            p {
-                font-size: 20px;
-                font-weight: 500;
+            .item-text {
+                display: flex;
+                flex-direction: row;
+
+                p {
+                    font-size: 20px;
+                    font-weight: 500;
+
+                    span {
+                        padding-left: 10px;
+                    }
+                }
+
+                img {
+                    margin-right: 10px;
+                }
+
+
             }
 
             .busketButtons {
@@ -43,7 +91,8 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            max-width: 150px;
+            max-width: 200px;
+
                 button {
                     background-color: $green;
                     color: white;

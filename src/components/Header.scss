@@ -36,6 +36,24 @@ header {
         button {
             border: none;
             background: none;
+            display: flex;
+            flex-direction: row;
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .busket-lenth {
+                background-color: $green;
+                font-size: 13px;
+                width: 15px;
+                height: 15px;
+                font-weight: 600;
+                color: white !important;
+                border-radius: 15px;
+                margin-left: -6px;
+            }
         }
     }
 }

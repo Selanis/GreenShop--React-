@@ -1,40 +1,31 @@
 import './styles.scss';
 import './Preview.scss';
-import React, { Component } from 'react';
-import $ from 'jquery';
+import React from 'react';
 import { BusketOption } from './BusketOption.jsx';
-import {useState, useEffect} from 'react';
-import { API_KEY, API_URL } from './config.jsx'
+import { useState, useEffect } from 'react';
 
-function Busket() {
-    const [goods, setGoods] = useState([]);
+function Busket(props) {
+    const [finalPrice, setPrice] = useState(0);
+    const [order, setOrder] = props.order;
 
-    useEffect(function getGoods() {
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", API_KEY);
-
-        const requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(API_URL, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            data.shop && setGoods(data.shop)
-        })
-        .catch(error => console.log('error', error));
-        
-    }, []);
+    console.log(order)
 
     return (
         <section className="busket">
             <div className='busketList'>
-            <h1 align='center'>Корзина</h1>
+                <button className='closeButton'>
+                    <img src="close.svg" />
+                </button>
+                <h1 align='center'>{order.length}</h1>
 
-                <BusketOption data={goods} />
+                    {/* {order.map((item) => (
+                        <BusketOption order={item}  totalPrice={[finalPrice, setPrice]} />
+                    ))} */}
 
+                <div className='price'>
+                    <h2>Общая стоимость:</h2>
+                    <p>{finalPrice}₽</p>
+                </div>
             </div>
         </section>
     )
