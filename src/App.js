@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './App.css';
 // import { Header } from './components/Header.jsx'
-import { Busket } from './components/Preview.jsx'
+import { Busket } from './components/Busket.jsx'
 import { Data } from './components/Data.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -26,8 +26,9 @@ function App() {
     };
 
     fetch("https://fortniteapi.io/v2/shop?lang=ru", requestOptions)
-      .then(response => response.text())
-      .then(data => {
+      .then(response => response.json())
+      .then((data) => {
+        
         data.shop && setGoods(data.shop)
         setLoading(false)
       })

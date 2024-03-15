@@ -1,14 +1,20 @@
 import './styles.scss';
-import './Preview.scss';
+import './Busket.scss';
 import React from 'react';
 import { BusketOption } from './BusketOption.jsx';
 import { useState, useEffect } from 'react';
 
 function Busket(props) {
-    const [finalPrice, setPrice] = useState(0);
-    const [order, setOrder] = props.order;
+    let finalPrice = 0;
+    const order = props.order
+    let arr = order;
 
-    console.log(order)
+    for (let i = 0; i < order.length; i++) {
+        finalPrice += order[i].price * order[i].count
+    }
+
+
+    props.setOrder(arr)
 
     return (
         <section className="busket">
@@ -16,11 +22,12 @@ function Busket(props) {
                 <button className='closeButton'>
                     <img src="close.svg" />
                 </button>
-                <h1 align='center'>{order.length}</h1>
+                <h1 align='center'>Корзина</h1>
 
-                    {/* {order.map((item) => (
-                        <BusketOption order={item}  totalPrice={[finalPrice, setPrice]} />
-                    ))} */}
+                    {order.map((item) => (
+                        <BusketOption orderItem={item} order={order} setOrder={(arr) => { props.setOrder(arr) }} />
+                        
+                    ))}
 
                 <div className='price'>
                     <h2>Общая стоимость:</h2>

@@ -3,97 +3,80 @@ import $ from 'jquery';
 import { useState, useEffect } from 'react';
 
 function BusketOption(props) {
-    // const id = props.data.mainId;
-    // const [count, setCount] = useState(localStorage.getItem(id))
-    // const name = props.data.displayName;
-    // const background = props.data.granted[0].images.icon_background;
-    // const price = props.data.price.finalPrice;
+    const orderItem = props.orderItem;
+    const name = orderItem.name;
+    const price = orderItem.price;
+    const background = orderItem.background;
+    let count = props.orderItem.count;
 
-    // function setPricePlus() {
-    //     props.totalPrice[1](props.totalPrice[0] + price)
-    // }
+    const [order, setOrder] = useState(props.order)
+    let orderArr = order;
+    const [index, setIndex] = useState(null);
 
-    // function setPriceMinus(p) {
-    //     props.totalPrice[1](props.totalPrice[0] - price)
-    // }
-
-    // function BusketClick(e) {
-    //     const operation = $(e.target).html()
-        
-
-    //     switch (operation) {
-    //         case "+":
-    //             localStorage.setItem(id, count + 1)
-    //             setCount(count + 1);
-    //             setPricePlus()
-    //             break
-    //         case "-":
-    //             if (count == 1) {
-    //                 localStorage.removeItem(id)
-    //                 alert("Товар удалён из корзины")
-    //                 setCount(0)
-    //             } else {
-    //                 localStorage.setItem(id, count - 1)
-    //                 setCount(count - 1)
-    //             }
-    //             setPriceMinus()
-    //             break
-    //     }
-    // }
+    useEffect(() => {
+        for (let i = 0; i < order.length; i++) {
+            if (order[i].id == orderItem.id) {
+                setIndex(i, order[i]);
+                break;
+            }
+        }
+    })
     
-    // function BusketClick(e) {
-    //     const operation = $(e.target).html()
+    function BusketClick(event) {
+        const operation = $(event.target).html()
 
-    //     switch (operation) {
-    //         case "+":
-    //             localStorage.setItem(id, count + 1)
-    //             setCount(count + 1);
-    //             break
-    //         case "-":
-    //             if (count == 1) {
-    //                 localStorage.removeItem(id)
-    //                 alert("Товар удалён из корзины")
-    //                 setCount(0)
-    //             } else {
-    //                 localStorage.setItem(id, count - 1)
-    //                 setCount(count - 1)
-    //             }
-    //             break
-    //     }
-    // }
+        switch (operation) {
+            case '+':
+                orderArr[index].count = count + 1;
+                count = count + 1
+                break
+            case '-':
+                if (orderItem.count == 1) {
+                    orderArr.pop(orderItem)
+                    count = 0
+                    alert(`${name} удалён из корзины`)
+                } else {
+                    orderArr[index].count = count - 1;
+                    count = count - 1
+                }
+                break
+        }
 
-    // function DeleteObj() {
-    //     localStorage.removeItem(id)
-    //     alert("Товар удалён из корзины")
-    // }
-    
-    // if (localStorage.getItem(id) !== null) {
-    //     console.log(props)
-        
+        setOrder(orderArr)
+        props.setOrder({order})
+    }
 
-    //     return (
-    //         <div className='busketList__item'>
-    //             <div className="item-text">
-    //                 <img src={background} alt="icon-image" width="30px" height="30px"/>
-    //                 <p>{name}</p>
-    //                 <p>
-    //                     <span>
-    //                         {price}₽
-    //                     </span>
-    //                 </p>
-    //             </div>
-                
-    //             <div className='busketButtons'>
-    //                 <button onClick={ BusketClick }>-</button>
-    //                 <p>{count}</p>
-    //                 <button onClick={ BusketClick }>+</button>
-    //                 <button style={{background: 'none'}} onClick={ DeleteObj }>
-    //                     <img src="Delete.svg" alt="removeObject" />
-    //                 </button>
-    //             </div>
-    //         </div>
-    //     )
-    // }
+    function DeleteItem() {
+        orderArr.pop(orderItem)
+        alert(`${name} удалён из корзины`)
+        count = 0
+        props.setOrder({order})
+    }
+
+
+
+    return (
+        <div className='busketList__item'>
+            <div className="item-text">
+                <img src={background} alt="icon-image" width="30px" height="30px"/>
+                <p>{name}</p>
+                <p>
+                    <span>
+                        {price}₽
+                    </span>
+                </p>
+            </div>
+            
+            <div className='busketButtons'>
+                <button onClick={ BusketClick }>-</button>
+                <p>{count}</p>
+                <button onClick={ BusketClick }>+</button>
+                <button onClick={ DeleteItem } style={{background: 'none'}}>
+                    <img src="Delete.svg" alt="removeObject" />
+                </button>
+            </div>
+        </div>
+    )    
 }
 
 export { BusketOption } 

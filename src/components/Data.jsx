@@ -6,63 +6,19 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import { Preloader } from './Preloader.jsx'
 import { Good } from './Good.jsx'
+import { Busket } from './Busket.jsx'
 import $ from 'jquery';
 
 function Data(props) {
     const goods = props.goods;
     const loading = props.loading;
 
-    console.log(props)
-
-    const id = props.goods.mainId;
-    const item = props.goods;
-    const price = props.goods.price.finalPrice;
     const [count, setCount] = useState(0)
-    const [order, setOrder] = useState(props.order);
-    let arr = order;
+    const [order, setOrder] = useState([]);
     const [objIndex, setIndex] = useState(null)
 
-
-    function AddGood() {
-        if (count == 0) {
-            const obj = {
-                id: id,
-                item: item,
-                count: 1,
-                price: price
-            }
-
-            arr.push(obj);
-
-            setIndex(order.length - 1);
-            setCount(count + 1);
-            setOrder(arr)
-            alert(`${props.item.displayName} добавлен в корзину!`)
-
-        }
-    }
-
-    function editGood(e) {
-        const operation = $(e.target).html()
-
-        switch (operation) {
-            case "+":
-                setCount(count + 1);
-                arr[objIndex].count = count + 1;
-                break
-            case "-":
-                if (count == 1) {
-                    arr.pop(arr[objIndex]);
-                    alert(`${props.item.displayName} удалён из корзины`)
-                    setCount(0)
-                } else {
-                    setCount(count - 1)
-                    arr[objIndex].count = count - 1;
-                }
-                break
-        }
-
-        setOrder(arr)
+    if (order.order != undefined) {
+        setOrder(order.order)
     }
 
     return (
@@ -87,10 +43,12 @@ function Data(props) {
                 </div>
             </header>
 
+            <Busket order={order} setOrder={(arr) => { setOrder(arr) }} />
+
             <section>
                 <div className="data" style={{minHeight: 'calc(100vh - 120px - 78px - 18px)'}}>
-                    {loading ? <Preloader /> : goods.slice(40, 60).map((item) => (
-                        <Good item={item} editGood={editGood} AddGood={AddGood} count={count} />
+                    {loading ? <Preloader /> : goods.slice(70, 90).map((item) => (
+                        <Good item={item} order={order} setOrder={(arr) => { setOrder(arr) }} />
                     )) }
                 </div>
             </section>
