@@ -17,12 +17,24 @@ function Data(props) {
     const [order, setOrder] = useState([]);
     const [objIndex, setIndex] = useState(null)
 
+    const [showBusket, setShowBusket] = useState(false);
+
     if (order.order != undefined) {
         setOrder(order.order)
     }
 
+    console.log(order)
+
+    function showModal() {
+        setShowBusket(true)
+    }
+
+
     return (
         <React.Fragment>
+        {
+            showBusket ? <Busket order={order} setShowBusket={(show) => { setShowBusket(show) }} setOrder={(arr) => { setOrder(arr) }}  /> : null
+        }
             <header className="header">
                 <div className="nav">
                     <img src="logo-main.svg" />
@@ -34,7 +46,7 @@ function Data(props) {
                         <li>Новости</li>
                     </ul>
 
-                    <button>
+                    <button onClick={ showModal }>
                         <img src='logo-shop.svg' />
                         
                         {order.length != 0 ? <p className='busket-lenth'>{order.length}</p> : null}
@@ -43,7 +55,7 @@ function Data(props) {
                 </div>
             </header>
 
-            <Busket order={order} setOrder={(arr) => { setOrder(arr) }} />
+            
 
             <section>
                 <div className="data" style={{minHeight: 'calc(100vh - 120px - 78px - 18px)'}}>

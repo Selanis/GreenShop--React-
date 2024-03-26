@@ -13,13 +13,17 @@ function Busket(props) {
         finalPrice += order[i].price * order[i].count
     }
 
+    function hideModal() {
+        props.setShowBusket(false);
+    }
+
 
     props.setOrder(arr)
 
     return (
         <section className="busket">
             <div className='busketList'>
-                <button className='closeButton'>
+                <button className='closeButton' onClick={ hideModal }>
                     <img src="close.svg" />
                 </button>
                 <h1 align='center'>Корзина</h1>

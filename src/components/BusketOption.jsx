@@ -32,7 +32,7 @@ function BusketOption(props) {
                 break
             case '-':
                 if (orderItem.count == 1) {
-                    orderArr.pop(orderItem)
+                    orderArr.splice(order[index], 1)
                     count = 0
                     alert(`${name} удалён из корзины`)
                 } else {
@@ -47,7 +47,7 @@ function BusketOption(props) {
     }
 
     function DeleteItem() {
-        orderArr.pop(orderItem)
+        orderArr.splice(order[index], 1)
         alert(`${name} удалён из корзины`)
         count = 0
         props.setOrder({order})
@@ -58,7 +58,10 @@ function BusketOption(props) {
     return (
         <div className='busketList__item'>
             <div className="item-text">
-                <img src={background} alt="icon-image" width="30px" height="30px"/>
+                {
+                    background == null ? <img src="favicon.svg" alt="icon-image" width="30px" height="30px"/> : <img src={background} alt="icon-image" width="30px" height="30px"/>
+                }
+                
                 <p>{name}</p>
                 <p>
                     <span>
