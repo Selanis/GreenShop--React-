@@ -64,11 +64,18 @@ function Data(props) {
         
     }
 
+    function deleteGood(el) {
+        let arr = order
+        const index = order.findIndex(i => el.id == i.id)
+
+        
+    }
+
 
     return (
         <React.Fragment>
         {
-            showBusket ? <Busket order={order} setShowBusket={(show) => { setShowBusket(show) }} setOrder={(arr) => { setOrder(arr) }}  /> : null
+            showBusket ? <Busket order={order} setShowBusket={(show) => { setShowBusket(show) }} editGood={ editGood } deleteGood={ deleteGood }/> : null
         }
             <header className="header">
                 <div className="nav">
