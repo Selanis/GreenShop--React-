@@ -19,14 +19,49 @@ function Data(props) {
 
     const [showBusket, setShowBusket] = useState(false);
 
-    if (order.order != undefined) {
-        setOrder(order.order)
+    if (order.arr != undefined) {
+        setOrder(order.arr)
     }
-
-    console.log(order)
 
     function showModal() {
         setShowBusket(true)
+    }
+
+    const editGood = (el) => {
+        const operation = el.operation
+        let arr = order
+        const index = order.findIndex(i => el.id == i.id)
+        
+
+        switch (operation) {
+            case '+':
+                arr[index].count = arr[index].count + 1
+                break
+            case '-':
+                if (arr[index].count > 1) {
+                    arr[index].count = arr[index].count - 1
+                } else {
+                    arr.splice(index, 1)
+                }
+                break
+        }
+        
+        setOrder({ arr })
+    }
+
+    function AddGood(el) {
+        const orderItem = {
+            id: el.id,
+            count: 1,
+            price: el.price,
+            name: el.name,
+            background: el.background
+        }
+
+        let arr = order
+        arr.push(orderItem)
+        setOrder({ arr })
+        
     }
 
 
@@ -60,7 +95,7 @@ function Data(props) {
             <section>
                 <div className="data" style={{minHeight: 'calc(100vh - 120px - 78px - 18px)'}}>
                     {loading ? <Preloader /> : goods.slice(70, 90).map((item) => (
-                        <Good item={item} order={order} setOrder={(arr) => { setOrder(arr) }} />
+                        <Good item={item} order={order} AddGood={ AddGood } editGood={ editGood } />
                     )) }
                 </div>
             </section>
