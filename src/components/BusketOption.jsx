@@ -3,83 +3,83 @@ import $ from 'jquery';
 import { useState, useEffect } from 'react';
 
 function BusketOption(props) {
-    const orderItem = props.orderItem;
-    const name = orderItem.name;
-    const price = orderItem.price;
-    const background = orderItem.background;
-    let count = props.orderItem.count;
+    // const orderItem = props.orderItem;
+    // const name = orderItem.name;
+    // const price = orderItem.price;
+    // const background = orderItem.background;
+    // let count = props.orderItem.count;
 
-    const [order, setOrder] = useState(props.order)
-    let orderArr = order;
-    const [index, setIndex] = useState(null);
+    // const [order, setOrder] = useState(props.order)
+    // let orderArr = order;
+    // const [index, setIndex] = useState(null);
 
-    useEffect(() => {
-        for (let i = 0; i < order.length; i++) {
-            if (order[i].id == orderItem.id) {
-                setIndex(i, order[i]);
-                break;
-            }
-        }
-    })
+    // useEffect(() => {
+    //     for (let i = 0; i < order.length; i++) {
+    //         if (order[i].id == orderItem.id) {
+    //             setIndex(i, order[i]);
+    //             break;
+    //         }
+    //     }
+    // })
     
-    function BusketClick(event) {
-        const operation = $(event.target).html()
+    // function BusketClick(event) {
+    //     const operation = $(event.target).html()
 
-        switch (operation) {
-            case '+':
-                orderArr[index].count = count + 1;
-                count = count + 1
-                break
-            case '-':
-                if (orderItem.count == 1) {
-                    orderArr.splice(order[index], 1)
-                    count = 0
-                    alert(`${name} удалён из корзины`)
-                } else {
-                    orderArr[index].count = count - 1;
-                    count = count - 1
-                }
-                break
-        }
+    //     switch (operation) {
+    //         case '+':
+    //             orderArr[index].count = count + 1;
+    //             count = count + 1
+    //             break
+    //         case '-':
+    //             if (orderItem.count == 1) {
+    //                 orderArr.splice(order[index], 1)
+    //                 count = 0
+    //                 alert(`${name} удалён из корзины`)
+    //             } else {
+    //                 orderArr[index].count = count - 1;
+    //                 count = count - 1
+    //             }
+    //             break
+    //     }
 
-        setOrder(orderArr)
-        props.setOrder({order})
-    }
+    //     setOrder(orderArr)
+    //     props.setOrder({order})
+    // }
 
-    function DeleteItem() {
-        orderArr.splice(order[index], 1)
-        alert(`${name} удалён из корзины`)
-        count = 0
-        props.setOrder({order})
-    }
+    // function DeleteItem() {
+    //     orderArr.splice(order[index], 1)
+    //     alert(`${name} удалён из корзины`)
+    //     count = 0
+    //     props.setOrder({order})
+    // }
 
 
 
-    return (
-        <div className='busketList__item'>
-            <div className="item-text">
-                {
-                    background == null ? <img src="favicon.svg" alt="icon-image" width="30px" height="30px"/> : <img src={background} alt="icon-image" width="30px" height="30px"/>
-                }
+    // return (
+    //     <div className='busketList__item'>
+    //         <div className="item-text">
+    //             {
+    //                 background == null ? <img src="favicon.svg" alt="icon-image" width="30px" height="30px"/> : <img src={background} alt="icon-image" width="30px" height="30px"/>
+    //             }
                 
-                <p>{name}</p>
-                <p>
-                    <span>
-                        {price}₽
-                    </span>
-                </p>
-            </div>
+    //             <p>{name}</p>
+    //             <p>
+    //                 <span>
+    //                     {price}₽
+    //                 </span>
+    //             </p>
+    //         </div>
             
-            <div className='busketButtons'>
-                <button onClick={ BusketClick }>-</button>
-                <p>{count}</p>
-                <button onClick={ BusketClick }>+</button>
-                <button onClick={ DeleteItem } style={{background: 'none'}}>
-                    <img src="Delete.svg" alt="removeObject" />
-                </button>
-            </div>
-        </div>
-    )    
+    //         <div className='busketButtons'>
+    //             <button onClick={ BusketClick }>-</button>
+    //             <p>{count}</p>
+    //             <button onClick={ BusketClick }>+</button>
+    //             <button onClick={ DeleteItem } style={{background: 'none'}}>
+    //                 <img src="Delete.svg" alt="removeObject" />
+    //             </button>
+    //         </div>
+    //     </div>
+    // )    
 }
 
 export { BusketOption } 

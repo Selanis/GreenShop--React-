@@ -28,6 +28,7 @@ function Data(props) {
     }
 
     const editGood = (el) => {
+        console.log('ok')
         const operation = el.operation
         let arr = order
         const index = order.findIndex(i => el.id == i.id)
@@ -68,7 +69,8 @@ function Data(props) {
         let arr = order
         const index = order.findIndex(i => el.id == i.id)
 
-        
+        arr.splice(index, 1)
+        setOrder({ arr })
     }
 
 

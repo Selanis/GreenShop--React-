@@ -25,6 +25,7 @@ function Busket(props) {
                 </button>
                 <h1 align='center'>Корзина</h1>
 
+                <div className="busketOptions">
                     {order.map((item) => (
                         <div className='busketList__item'>
                             <div className="item-text">
@@ -41,17 +42,16 @@ function Busket(props) {
                             </div>
                             
                             <div className='busketButtons'>
-                                <button onClick={ props.editGood({operation: '-', id: item.id}) }>-</button>
+                                <button onClick={ () => props.editGood({operation: '-', id: item.id}) }>-</button>
                                 <p>{ item.count }</p>
-                                <button onClick={ props.editGood({operation: '+', id: item.id}) }>+</button>
-                                <button onClick={ props.deleteGood({id: item.id}) } style={{background: 'none'}}>
+                                <button onClick={ () => props.editGood({operation: '+', id: item.id}) }>+</button>
+                                <button onClick={ () => props.deleteGood({id: item.id}) } style={{background: 'none'}}>
                                     <img src="Delete.svg" alt="removeObject" />
                                 </button>
                             </div>
                         </div>
-                        
                     ))}
-
+                </div>
                 <div className='price'>
                     <h2>Общая стоимость:</h2>
                     <p>{finalPrice}₽</p>
