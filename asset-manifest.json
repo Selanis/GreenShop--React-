@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/GreenShop--React-/static/css/main.a960b557.css",
+    "main.js": "/GreenShop--React-/static/js/main.c91eb0cf.js",
+    "static/js/453.57809954.chunk.js": "/GreenShop--React-/static/js/453.57809954.chunk.js",
+    "static/media/CeraPro-Light.ttf": "/GreenShop--React-/static/media/CeraPro-Light.abac45063aefdefab7da.ttf",
+    "static/media/CeraPro-Regular.ttf": "/GreenShop--React-/static/media/CeraPro-Regular.1b7f7963cbafd9cc1e33.ttf",
+    "static/media/CeraPro-Medium.ttf": "/GreenShop--React-/static/media/CeraPro-Medium.ee3e268e11a318d8f89f.ttf",
+    "static/media/CeraPro-Bold.ttf": "/GreenShop--React-/static/media/CeraPro-Bold.9516746e439619b13031.ttf",
+    "static/media/CeraPro-Black.ttf": "/GreenShop--React-/static/media/CeraPro-Black.2ee7ece963cf5c267840.ttf",
+    "static/media/CeraPro-Thin.ttf": "/GreenShop--React-/static/media/CeraPro-Thin.acfb8a407720037f7682.ttf",
+    "index.html": "/GreenShop--React-/index.html",
+    "main.a960b557.css.map": "/GreenShop--React-/static/css/main.a960b557.css.map",
+    "main.c91eb0cf.js.map": "/GreenShop--React-/static/js/main.c91eb0cf.js.map",
+    "453.57809954.chunk.js.map": "/GreenShop--React-/static/js/453.57809954.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a960b557.css",
+    "static/js/main.c91eb0cf.js"
+  ]
+}
