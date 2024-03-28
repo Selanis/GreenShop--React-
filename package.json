@@ -2,7 +2,7 @@
   "name": "storeapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://selanis.github.io/GreenShop--React-/",
+  "homepage": "https://selanis.github.io/GreenShop--React-",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
