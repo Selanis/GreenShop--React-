@@ -42,6 +42,7 @@ function Data(props) {
                 if (arr[index].count > 1) {
                     arr[index].count = arr[index].count - 1
                 } else {
+                    alert(`${ arr[index].name } удалён из корзины`)
                     arr.splice(index, 1)
                 }
                 break
@@ -59,6 +60,7 @@ function Data(props) {
             background: el.background
         }
 
+        alert(`${ el.name } добавлен в корзину`)
         let arr = order
         arr.push(orderItem)
         setOrder({ arr })
@@ -69,6 +71,7 @@ function Data(props) {
         let arr = order
         const index = order.findIndex(i => el.id == i.id)
 
+        alert(`${ arr[index].name } удалён из корзины`)
         arr.splice(index, 1)
         setOrder({ arr })
     }
